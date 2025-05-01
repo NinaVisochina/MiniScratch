@@ -1,0 +1,25 @@
+﻿@model UploadImageViewModel
+@{
+    ViewData["Title"] = "Editor";
+}
+
+<form asp-action="Editor" method="post" enctype="multipart/form-data">
+    <input type="file" asp-for="ImageFile" />
+    <button type="submit">Upload</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ImagePath))
+{
+    <div>
+        <img id="uploadedImage" src="@Model.ImagePath" alt="Uploaded" style="max-width: 400px;" />
+        <div>
+            <button onclick="rotate()">Rotate</button>
+            <button onclick="scale()">Zoom</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/image-editor.js"></script>
+}
